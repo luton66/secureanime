@@ -18,5 +18,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .httpBasic();
+//                This is what you use if you want to have form login instead
+//                .formLogin()
     }
 }
