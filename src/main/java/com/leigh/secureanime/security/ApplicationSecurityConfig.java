@@ -30,6 +30,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http    .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
                 .antMatchers("/api/**").hasRole(USER.name())
+                .antMatchers("/admin/**").hasRole(ADMIN_TRAINEE.name())
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -61,7 +62,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .roles(ADMIN.name())
                 .build();
 
-        return new InMemoryUserDetailsManager(user, user2);
+        return new InMemoryUserDetailsManager(user, user2, adminTrainee);
     }
 
 

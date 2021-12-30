@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("api/v1/anime")
 public class AnimeController {
 
-    private static final List<Anime> ANIME_LIST = Arrays.asList(
+    public static final List<Anime> ANIME_LIST = Arrays.asList(
             new Anime(1, "Attack On Titan"),
             new Anime(2, "Ghost In The Shell"),
             new Anime(3, "Gate")
