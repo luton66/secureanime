@@ -16,4 +16,9 @@ public class Anime {
     public String getTitle() {
         return title;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s", animeId, title)
+    }
 }

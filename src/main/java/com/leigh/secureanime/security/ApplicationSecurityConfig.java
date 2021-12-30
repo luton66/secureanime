@@ -27,7 +27,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http    .authorizeRequests()
+        http    .csrf().disable() //TODO : This will need to be removed, temporary fix to allow POST and PUT apis to work
+                .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
                 .antMatchers("/api/**").hasRole(USER.name())
                 .antMatchers("/admin/**").hasRole(ADMIN_TRAINEE.name())
