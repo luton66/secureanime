@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -18,6 +19,7 @@ import static com.leigh.secureanime.security.ApplicationUserRole.*;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
@@ -32,10 +34,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http    .csrf().disable() //TODO : This will need to be removed, temporary fix to allow POST and PUT apis to work
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/admin/**").hasAuthority(ADMIN_WRITE.getPermission())
-                .antMatchers(HttpMethod.PUT, "/admin/**").hasAuthority(ADMIN_WRITE.getPermission())
-                .antMatchers(HttpMethod.DELETE, "/admin/**").hasAuthority(ADMIN_WRITE.getPermission())
-                .antMatchers(HttpMethod.GET, "/admin/**").hasAnyRole(ADMIN.name(), ADMIN_TRAINEE.name())
+//                .antMatchers(HttpMethod.POST, "/admin/**").hasAuthority(ADMIN_WRITE.getPermission())
+//                .antMatchers(HttpMethod.PUT, "/admin/**").hasAuthority(ADMIN_WRITE.getPermission())
+//                .antMatchers(HttpMethod.DELETE, "/admin/**").hasAuthority(ADMIN_WRITE.getPermission())
+//                .antMatchers(HttpMethod.GET, "/admin/**").hasAnyRole(ADMIN.name(), ADMIN_TRAINEE.name())
                 .anyRequest()
                 .authenticated()
                 .and()
